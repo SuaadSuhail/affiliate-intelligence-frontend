@@ -54,7 +54,7 @@ export function Dashboard({ affiliates, dashboard, loading }: DashboardProps) {
         />
         <ScoreCard
           title="High Risk"
-          value={dashboard?.high_risk_count ?? "—"}
+          value={dashboard?.at_risk_count ?? "—"}
           accent="text-red-600"
           subtitle="need attention"
         />
@@ -89,26 +89,29 @@ export function Dashboard({ affiliates, dashboard, loading }: DashboardProps) {
         </div>
       )}
 
-      {/* Additional stats */}
-      {dashboard && (
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-          <ScoreCard
-            title="Avg Churn Risk"
-            value={`${(dashboard.avg_churn_risk * 100).toFixed(1)}%`}
-            accent="text-red-500"
-          />
-          <ScoreCard
-            title="Avg Growth Potential"
-            value={`${(dashboard.avg_growth_potential * 100).toFixed(1)}%`}
-            accent="text-green-500"
-          />
-          <ScoreCard
-            title="Score History"
-            value={dashboard.score_history_entries}
-            subtitle="data points"
-          />
-        </div>
-      )}
+      {/* Additional stats computed from scores array */}
+      {dashboard && dashboard.scores.length > 0 && (() => {
+        const avgChurn = dashboard.scores.reduce(
+          (sum, s) => sum + s.churn_risk_score, 0
+        ) / dashboard.scores.length;
+        const avgGrowth = dashboard.scores.reduce(
+          (sum, s) => sum + s.growth_potential_score, 0
+        ) / dashboard.scores.length;
+        return (
+          <div className="grid grid-cols-2 gap-4">
+            <ScoreCard
+              title="Avg Churn Risk"
+              value={`${(avgChurn * 100).toFixed(1)}%`}
+              accent="text-red-500"
+            />
+            <ScoreCard
+              title="Avg Growth Potential"
+              value={`${(avgGrowth * 100).toFixed(1)}%`}
+              accent="text-green-500"
+            />
+          </div>
+        );
+      })()}
     </div>
   );
 }

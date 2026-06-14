@@ -13,14 +13,21 @@ export interface Affiliate {
   last_contact_at: string;
 }
 
+export interface DashboardScore {
+  affiliate_id: string;
+  name: string;
+  churn_risk_score: number;
+  growth_potential_score: number;
+  health_score: number;
+}
+
 export interface Dashboard {
   total_affiliates: number;
   avg_health_score: number;
-  avg_churn_risk: number;
-  avg_growth_potential: number;
-  high_risk_count: number;
+  at_risk_count: number;
   high_growth_count: number;
-  score_history_entries: number;
+  churned_count: number;
+  scores: DashboardScore[];
 }
 
 export interface ChatMessage {

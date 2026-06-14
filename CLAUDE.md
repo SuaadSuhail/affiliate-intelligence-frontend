@@ -101,5 +101,13 @@ Types: feat, fix, style, refactor, docs
   so TypeScript infers the correct `ValueType | undefined` signature.
 - Fixed: Dashboard NaN% on Avg Churn Risk and Avg Growth Potential — backend returns
   decimals (e.g. 0.389), now multiplied by 100 and formatted with toFixed(1).
-- Verified: Dashboard interface field names (high_risk_count, high_growth_count,
-  avg_churn_risk, avg_growth_potential) match the backend /ml/dashboard response exactly.
+- Fixed: Dashboard interface realigned to actual /ml/dashboard API response.
+  Actual response has at_risk_count, churned_count, high_growth_count, and a scores[]
+  array — not high_risk_count, avg_churn_risk, avg_growth_potential, or score_history_entries.
+  Added DashboardScore interface. avg_churn_risk and avg_growth_potential are now computed
+  client-side from dashboard.scores[].
+
+## API response shapes (verified)
+GET /ml/dashboard returns:
+  { total_affiliates, avg_health_score, at_risk_count, high_growth_count, churned_count,
+    scores: [{ affiliate_id, name, churn_risk_score, growth_potential_score, health_score }] }
