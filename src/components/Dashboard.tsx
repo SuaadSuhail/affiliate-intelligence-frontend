@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
-import { Affiliate, Dashboard as DashboardData } from "../api/endpoints";
+import type { Affiliate, Dashboard as DashboardData } from "../api/endpoints";
 import { ScoreCard } from "./ui/ScoreCard";
 import { LoadingSpinner } from "./ui/LoadingSpinner";
 
@@ -76,7 +76,7 @@ export function Dashboard({ affiliates, dashboard, loading }: DashboardProps) {
               <XAxis dataKey="name" tick={{ fontSize: 11 }} />
               <YAxis domain={[0, 100]} tick={{ fontSize: 11 }} />
               <Tooltip
-                formatter={(v: number) => [v, "Health Score"]}
+                formatter={(v) => [v, "Health Score"]}
                 contentStyle={{ fontSize: 12 }}
               />
               <Bar dataKey="score" radius={[4, 4, 0, 0]}>

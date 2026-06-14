@@ -1,4 +1,4 @@
-import { Affiliate } from "../api/endpoints";
+import type { Affiliate } from "../api/endpoints";
 import { Badge } from "./ui/Badge";
 import { HealthBar } from "./ui/HealthBar";
 

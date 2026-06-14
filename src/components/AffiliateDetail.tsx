@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Affiliate, ShapExplanation, getShapExplanation } from "../api/endpoints";
+import type { Affiliate, ShapExplanation } from "../api/endpoints";
+import { getShapExplanation } from "../api/endpoints";
 import { Badge } from "./ui/Badge";
 import { HealthBar } from "./ui/HealthBar";
 import { LoadingSpinner } from "./ui/LoadingSpinner";

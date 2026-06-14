@@ -88,6 +88,14 @@ Types: feat, fix, style, refactor, docs
 - `src/App.tsx` — Three-panel layout: sidebar + tabbed main + sliding detail panel
 
 ## Status
-- Status: initial build complete
+- Status: build complete, runtime errors fixed
 - npm run dev: http://localhost:5173
 - Backend required: http://localhost:8080
+
+## Fixes
+- Fixed: `verbatimModuleSyntax` requires `import type` for all interface imports.
+  All components now use `import type { ... }` for types and a separate `import { ... }`
+  for runtime values (functions). Affects: App.tsx, AffiliateList, AffiliateDetail,
+  Dashboard, ChatInterface.
+- Fixed: Recharts v3 Tooltip `formatter` prop type — removed explicit `number` annotation
+  so TypeScript infers the correct `ValueType | undefined` signature.

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
-import { ChatMessage, sendChatMessage } from "../api/endpoints";
+import type { ChatMessage } from "../api/endpoints";
+import { sendChatMessage } from "../api/endpoints";
 import { LoadingSpinner } from "./ui/LoadingSpinner";
 
 const SUGGESTIONS = [

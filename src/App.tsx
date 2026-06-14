@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { RefreshCw, X, LayoutDashboard, MessageSquare, Sliders } from "lucide-react";
-import { Affiliate, Dashboard as DashboardData, getAffiliates, getDashboard } from "./api/endpoints";
+import type { Affiliate, Dashboard as DashboardData } from "./api/endpoints";
+import { getAffiliates, getDashboard } from "./api/endpoints";
 import { AffiliateList } from "./components/AffiliateList";
 import { AffiliateDetail } from "./components/AffiliateDetail";
 import { Dashboard } from "./components/Dashboard";
