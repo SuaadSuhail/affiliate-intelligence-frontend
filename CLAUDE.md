@@ -99,3 +99,7 @@ Types: feat, fix, style, refactor, docs
   Dashboard, ChatInterface.
 - Fixed: Recharts v3 Tooltip `formatter` prop type — removed explicit `number` annotation
   so TypeScript infers the correct `ValueType | undefined` signature.
+- Fixed: Dashboard NaN% on Avg Churn Risk and Avg Growth Potential — backend returns
+  decimals (e.g. 0.389), now multiplied by 100 and formatted with toFixed(1).
+- Verified: Dashboard interface field names (high_risk_count, high_growth_count,
+  avg_churn_risk, avg_growth_potential) match the backend /ml/dashboard response exactly.

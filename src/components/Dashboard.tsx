@@ -94,12 +94,12 @@ export function Dashboard({ affiliates, dashboard, loading }: DashboardProps) {
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           <ScoreCard
             title="Avg Churn Risk"
-            value={`${Math.round(dashboard.avg_churn_risk * 100)}%`}
+            value={`${(dashboard.avg_churn_risk * 100).toFixed(1)}%`}
             accent="text-red-500"
           />
           <ScoreCard
             title="Avg Growth Potential"
-            value={`${Math.round(dashboard.avg_growth_potential * 100)}%`}
+            value={`${(dashboard.avg_growth_potential * 100).toFixed(1)}%`}
             accent="text-green-500"
           />
           <ScoreCard
