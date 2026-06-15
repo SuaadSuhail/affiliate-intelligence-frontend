@@ -112,9 +112,22 @@ Types: feat, fix, style, refactor, docs
   return type in endpoints.ts and content assignment in ChatInterface.tsx to use
   data.response.
 
+- Fixed: AffiliateDetail crash on click — fmt(n) and fmtMoney(n) now accept
+  number | undefined and use (n ?? 0) before toFixed(). All numeric fields in the
+  affiliate object guard with ?? 0. last_contact_at guards undefined before Date parse.
+- Fixed: SHAP response structure mismatch — backend returns
+  { churn: { top_factors, prediction }, growth: { top_factors, prediction } }, not
+  { risk_factors, growth_factors }. Updated ShapFactor (shap_value/feature_value/direction),
+  added ShapSection interface, updated ShapExplanation in endpoints.ts. AffiliateDetail
+  now reads shap.churn.top_factors and shap.growth.top_factors with full null guards.
+  Shows "SHAP explanation not available" on any error or missing data.
+
 ## API response shapes (verified)
 GET /ml/dashboard returns:
   { total_affiliates, avg_health_score, at_risk_count, high_growth_count, churned_count,
     scores: [{ affiliate_id, name, churn_risk_score, growth_potential_score, health_score }] }
 POST /agent/chat returns:
   { response: string, tools_used: string[], message_count: number }
+GET /ml/explain/{id} returns:
+  { affiliate_id, churn: { top_factors: [{ feature, shap_value, feature_value, direction }], prediction },
+    growth: { top_factors: [...], prediction } }

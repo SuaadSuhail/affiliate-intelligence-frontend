@@ -52,14 +52,20 @@ export interface TaskStatus {
 
 export interface ShapFactor {
   feature: string;
-  value: number;
-  description?: string;
+  shap_value: number;
+  feature_value: number;
+  direction: string;
+}
+
+export interface ShapSection {
+  top_factors: ShapFactor[];
+  prediction: number;
 }
 
 export interface ShapExplanation {
   affiliate_id: string;
-  risk_factors: ShapFactor[];
-  growth_factors: ShapFactor[];
+  churn: ShapSection;
+  growth: ShapSection;
 }
 
 export const getAffiliates    = ()          => api.get<Affiliate[]>("/affiliates");
