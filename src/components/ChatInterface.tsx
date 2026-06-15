@@ -49,9 +49,10 @@ export function ChatInterface() {
     try {
       const history = [...messages, userMsg];
       const { data } = await sendChatMessage(text.trim(), history);
+      console.log("API response:", data);
       const assistantMsg: ChatMessage = {
         role: "assistant",
-        content: data.message,
+        content: data.response,
         tools_used: data.tools_used,
         timestamp: new Date().toISOString(),
       };

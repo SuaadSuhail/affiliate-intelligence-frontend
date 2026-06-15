@@ -107,7 +107,14 @@ Types: feat, fix, style, refactor, docs
   Added DashboardScore interface. avg_churn_risk and avg_growth_potential are now computed
   client-side from dashboard.scores[].
 
+- Fixed: Chat bubble showed empty content — backend POST /agent/chat returns
+  { response, tools_used, message_count }, not { message }. Updated sendChatMessage
+  return type in endpoints.ts and content assignment in ChatInterface.tsx to use
+  data.response.
+
 ## API response shapes (verified)
 GET /ml/dashboard returns:
   { total_affiliates, avg_health_score, at_risk_count, high_growth_count, churned_count,
     scores: [{ affiliate_id, name, churn_risk_score, growth_potential_score, health_score }] }
+POST /agent/chat returns:
+  { response: string, tools_used: string[], message_count: number }

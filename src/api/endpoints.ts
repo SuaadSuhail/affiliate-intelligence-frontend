@@ -69,7 +69,7 @@ export const getAffiliate     = (id: string) => api.get<Affiliate>(`/affiliates/
 export const getShapExplanation = (id: string) => api.get<ShapExplanation>(`/ml/explain/${id}`);
 
 export const sendChatMessage  = (message: string, history: ChatMessage[]) =>
-  api.post<{ message: string; tools_used?: string[] }>("/agent/chat", {
+  api.post<{ response: string; tools_used?: string[]; message_count?: number }>("/agent/chat", {
     message,
     conversation_history: history,
   });
