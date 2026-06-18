@@ -108,9 +108,9 @@ export function ChatInterface() {
             ) : (
               <div className="max-w-[82%]">
                 <div className="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
-                  <ReactMarkdown className="prose prose-sm max-w-none">
-                    {m.content}
-                  </ReactMarkdown>
+                  <div className="prose prose-sm max-w-none">
+                    <ReactMarkdown>{m.content}</ReactMarkdown>
+                  </div>
                 </div>
                 {m.tools_used && m.tools_used.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-1.5 ml-1">

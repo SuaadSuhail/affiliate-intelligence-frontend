@@ -112,9 +112,10 @@ Types: feat, fix, style, refactor, docs
   client-side from dashboard.scores[].
 
 - feat: Agent response bubbles now render markdown — bold, lists, headings, code blocks.
-  Installed react-markdown and @tailwindcss/typography. Assistant messages use
-  <ReactMarkdown className="prose prose-sm max-w-none"> instead of a plain <p>.
-  Typography plugin added to tailwind.config.js plugins array.
+  Installed react-markdown and @tailwindcss/typography. Typography plugin added to
+  tailwind.config.js plugins array.
+- Fixed: react-markdown v9 removed className prop — wrapper div carries
+  "prose prose-sm max-w-none"; ReactMarkdown renders inside it with no props.
 
 - Fixed: Chat bubble showed empty content — backend POST /agent/chat returns
   { response, tools_used, message_count }, not { message }. Updated sendChatMessage
