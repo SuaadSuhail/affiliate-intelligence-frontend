@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 import type { ChatMessage } from "../api/endpoints";
 import { sendChatMessage } from "../api/endpoints";
 import { LoadingSpinner } from "./ui/LoadingSpinner";
@@ -107,7 +108,9 @@ export function ChatInterface() {
             ) : (
               <div className="max-w-[82%]">
                 <div className="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
-                  <p className="text-sm leading-relaxed text-gray-800 whitespace-pre-wrap">{m.content}</p>
+                  <ReactMarkdown className="prose prose-sm max-w-none">
+                    {m.content}
+                  </ReactMarkdown>
                 </div>
                 {m.tools_used && m.tools_used.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-1.5 ml-1">

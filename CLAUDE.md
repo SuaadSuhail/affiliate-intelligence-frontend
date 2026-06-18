@@ -92,6 +92,10 @@ Types: feat, fix, style, refactor, docs
 - npm run dev: http://localhost:5173
 - Backend required: http://localhost:8080
 
+## Dependencies added
+- react-markdown — renders markdown in assistant chat bubbles
+- @tailwindcss/typography (dev) — prose classes for markdown styling
+
 ## Fixes
 - Fixed: `verbatimModuleSyntax` requires `import type` for all interface imports.
   All components now use `import type { ... }` for types and a separate `import { ... }`
@@ -106,6 +110,11 @@ Types: feat, fix, style, refactor, docs
   array — not high_risk_count, avg_churn_risk, avg_growth_potential, or score_history_entries.
   Added DashboardScore interface. avg_churn_risk and avg_growth_potential are now computed
   client-side from dashboard.scores[].
+
+- feat: Agent response bubbles now render markdown — bold, lists, headings, code blocks.
+  Installed react-markdown and @tailwindcss/typography. Assistant messages use
+  <ReactMarkdown className="prose prose-sm max-w-none"> instead of a plain <p>.
+  Typography plugin added to tailwind.config.js plugins array.
 
 - Fixed: Chat bubble showed empty content — backend POST /agent/chat returns
   { response, tools_used, message_count }, not { message }. Updated sendChatMessage
